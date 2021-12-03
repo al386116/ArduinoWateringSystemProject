@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     Button regarButton;
     Button abrirToldoButton;
     Button cerrarToldoButton;
+    SendMessage sendMessage;
 
 
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         this.abrirToldoButton = (Button) findViewById(R.id.abrirToldoButton);
         this.cerrarToldoButton = (Button) findViewById(R.id.cerrarToldoButton);
         autoID.setChecked(false);
+        sendMessage = new SendMessage();
     }
 
     public void onClickAuto(View v) {

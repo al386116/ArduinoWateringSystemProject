@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="automaticWateringSystem" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="automaticWateringSystem">
+        <serverdata>
+          <mappings>
+            <mapping deploy="data" local="$USER_HOME$/server" web="data" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

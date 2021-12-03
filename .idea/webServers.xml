@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="3d615b58-6fcb-41cc-b0d4-306fa0474726" name="RaspberryPi" url="http://localhost">
+        <fileTransfer accessType="SFTP" sshConfigId="bd500d96-151f-495a-92ec-47f1164e8c22" sshConfig="RaspberryPi">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="a0a8d0f6-2b31-4326-aaf7-41a7e52b9f0d" name="automaticWateringSystem" url="http://localhost:8080">
+        <fileTransfer mountedRoot="$USER_HOME$/server" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>

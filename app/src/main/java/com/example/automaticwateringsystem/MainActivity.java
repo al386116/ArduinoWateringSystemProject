@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     Button regarButton;
     Button abrirToldoButton;
     Button cerrarToldoButton;
+    TextView infoTextView;
     SendMessage sendMessage;
 
 
@@ -37,8 +38,10 @@ public class MainActivity extends AppCompatActivity {
         this.regarButton = (Button) findViewById(R.id.regarButton);
         this.abrirToldoButton = (Button) findViewById(R.id.abrirToldoButton);
         this.cerrarToldoButton = (Button) findViewById(R.id.cerrarToldoButton);
+        this.infoTextView = (TextView) findViewById(R.id.infoTextView);
         autoID.setChecked(false);
-        sendMessage = new SendMessage();
+        //sendMessage = (SendMessage) new SendMessage().execute("fufifu");
+
     }
 
     public void onClickAuto(View v) {
@@ -53,5 +56,22 @@ public class MainActivity extends AppCompatActivity {
             abrirToldoButton.setEnabled(false);
             cerrarToldoButton.setEnabled(false);
         }
+    }
+
+    public void onClickRegar(View v) {
+        infoTextView.setText("- - - Mensajes de información - - -\nRegando durante 5 minutos");
+        regarButton.setEnabled(false);
+    }
+
+    public void onClickAbrirToldo(View v) {
+        infoTextView.setText("- - - Mensajes de información - - -\nToldo abierto");
+        abrirToldoButton.setEnabled(false);
+        cerrarToldoButton.setEnabled(true);
+    }
+
+    public void onClickCerrarToldo(View v) {
+        infoTextView.setText("- - - Mensajes de información - - -\nToldo cerrado");
+        cerrarToldoButton.setEnabled(false);
+        abrirToldoButton.setEnabled(true);
     }
 }

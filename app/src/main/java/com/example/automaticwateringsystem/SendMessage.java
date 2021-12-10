@@ -20,8 +20,7 @@ public class SendMessage extends AsyncTask<String, Void, Void> {
             try {
 
                 Socket socket = new Socket("150.128.48.167", 8000);
-                PrintWriter outToServer = new PrintWriter(
-                        new OutputStreamWriter(socket.getOutputStream()));
+                PrintWriter outToServer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
                 outToServer.println(params[0]);
                 outToServer.flush();
             } catch (IOException e) {

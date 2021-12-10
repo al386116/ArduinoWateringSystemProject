@@ -78,6 +78,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -124,6 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#4F9C02"
+                android:onClick="onClickRegar"
                 android:text="REGAR"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
@@ -137,6 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#4F9C02"
+                android:onClick="onClickAbrirToldo"
                 android:text="Abrir toldo"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
@@ -150,10 +155,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#F38D20"
+                android:onClick="onClickCerrarToldo"
                 android:text="CERRAR TOLDO"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15sp" />
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/infoTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#3A3939"
+            android:text="- - - Mensajes de información - - -"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

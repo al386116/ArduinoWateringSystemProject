@@ -1,37 +1,81 @@
 package com.example.automaticwateringsystem;
 
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
+import android.os.SystemClock;
+import android.util.Log;
 
+
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
 import java.net.Socket;
+import java.net.SocketAddress;
+import java.net.URL;
 
 
-public class SendMessage extends AsyncTask<String, Void, Void> {
+public class SendMessage extends AsyncTask<String, Void, String> {
 
     private Exception exception;
-    @Override
-    protected Void doInBackground(String... params) {
+    private String url;
+    private Handler handler;
 
-        try {
+    public SendMessage(String url){
+        this.url = url;
+        this.handler = null;
+    }
+
+    public SendMessage(Handler handler){
+        this.handler = handler;
+    }
+
+
+
+    @Override
+    protected String doInBackground(String... params) {
+
+
+        if(handler != null){
+                SystemClock.sleep(300000);
+                showDisplayMessage("DATOS");
+                return null;
+        }else {
 
             try {
 
-                Socket socket = new Socket("150.128.48.167", 8000);
-                PrintWriter outToServer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
-                outToServer.println(params[0]);
-                outToServer.flush();
-            } catch (IOException e) {
+                try {
+                    URL servidor = new URL(url);
+                    HttpURLConnection connection = (HttpURLConnection) servidor.openConnection();
+                    connection.connect();
+                    BufferedReader entrada = new BufferedReader(new
+                            InputStreamReader(connection.getInputStream()));
+                    return entrada.readLine();
+                } catch (IOException e) {
 
-                e.printStackTrace();
+                    e.printStackTrace();
+                }
+            } catch (Exception e) {
+
+                this.exception = e;
+                return null;
             }
-        }  catch (Exception e) {
-
-            this.exception = e;
             return null;
         }
-        return null;
     }
+
+    public void showDisplayMessage(String displayMessage) {
+        Message msg = new Message();
+        msg.arg1 = 0;
+        msg.obj = displayMessage.replaceAll("_", " ");
+        handler.sendMessage(msg);
+    }
+
+
+
 }

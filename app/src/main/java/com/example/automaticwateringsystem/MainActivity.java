@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     Button cerrarToldoButton;
     TextView infoTextView;
     Handler handler;
+    String ip="http://192.168.0.25:8080/";
 
 
     @SuppressLint("SetTextI18n")
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         this.cerrarToldoButton = (Button) findViewById(R.id.cerrarToldoButton);
         this.infoTextView = (TextView) findViewById(R.id.infoTextView);
         autoID.setChecked(false);
-        SendMessage sendMessage = new SendMessage("http://192.168.0.25:8080/");
+        SendMessage sendMessage = new SendMessage(ip);
         try {
             String mensaje = sendMessage.execute().get();
             String[] datos = mensaje.split("#");
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("handlerNetworkExecutorResult", (String) msg.obj);
                 if (msg != null) {
                     if (msg.obj.equals("DATOS")) {
-                        SendMessage sendMessage = new SendMessage("http://192.168.0.25:8080/");
+                        SendMessage sendMessage = new SendMessage(ip);
                         try {
                             String mensaje = sendMessage.execute().get();
                             String[] datos = mensaje.split("#");
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickAuto(View v) {
-        SendMessage sendMessage = new SendMessage("http://192.168.0.25:8080/auto");
+        SendMessage sendMessage = new SendMessage(ip + "auto");
         try {
             String Mensaje = sendMessage.execute().get();
             if (Mensaje.equals("listo")){
@@ -126,16 +127,14 @@ public class MainActivity extends AppCompatActivity {
                     autoID.setChecked(false);
                 }
             }
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
 
     }
 
     public void onClickRegar(View v) throws IOException {
-        SendMessage sendMessage = new SendMessage("http://192.168.0.25:8080/regar");
+        SendMessage sendMessage = new SendMessage(ip + "regar");
         try {
             String Mensaje = sendMessage.execute().get();
             if (Mensaje.equals("listo")){
@@ -143,9 +142,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 infoTextView.setText("- - - Mensajes de información - - -\nError al regar");
             }
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
 
@@ -153,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickAbrirToldo(View v) {
-        SendMessage sendMessage = new SendMessage("http://192.168.0.25:8080/abrirToldo");
+        SendMessage sendMessage = new SendMessage(ip + "abrirToldo");
         try {
             String Mensaje = sendMessage.execute().get();
             if (Mensaje.equals("listo")){
@@ -164,16 +161,14 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 infoTextView.setText("- - - Mensajes de información - - -\nError abriendo el toldo");
             }
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
 
     }
 
     public void onClickCerrarToldo(View v) {
-        SendMessage sendMessage = new SendMessage("http://192.168.0.25:8080/cerrarToldo");
+        SendMessage sendMessage = new SendMessage(ip + "cerrarToldo");
         try {
             String Mensaje = sendMessage.execute().get();
             if (Mensaje.equals("listo")){
@@ -184,9 +179,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 infoTextView.setText("- - - Mensajes de información - - -\nError cerrando el toldo");
             }
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
     }
